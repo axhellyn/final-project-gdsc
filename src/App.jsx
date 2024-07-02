@@ -1,10 +1,11 @@
 import "./index.css";
+import HomePage from './pages/HomePage'
 
 function App() {
   return (
-    <>
-      <h1 className="text-purple-600">hello world</h1>
-    </>
+    <div className="font-poppins">
+    <HomePage/>
+    </div>
   );
 }
 
