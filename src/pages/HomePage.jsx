@@ -1,11 +1,11 @@
 import React from 'react'
-import HeroSection from '../components/HeroSection';
+import Navbar from '../components/ui/Navbar'
 
 function HomePage() {
   return (
-    <>
-    <HeroSection/>
-    </>
+    <div>
+    <Navbar/>
+    </div>
   )
 }
 export default HomePage;
