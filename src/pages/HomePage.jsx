@@ -1,7 +1,8 @@
 import React from 'react'
-import Navbar from '../components/ui/Navbar'
+import Navbar from '../components/ui/Navbar';
 import HeroSection from '../components/HeroSection';
 import AboutUsSection from '../components/AboutUsSection'
+import ProductsSection from '../components/ProductsSection';
 
 function HomePage() {
   return (
@@ -9,6 +10,7 @@ function HomePage() {
     <Navbar/>
     <HeroSection/>
     <AboutUsSection/>
+    <ProductsSection/>
     </div>
   )
 }

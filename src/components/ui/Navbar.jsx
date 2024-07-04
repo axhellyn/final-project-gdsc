@@ -8,11 +8,11 @@ export default function navbar() {
   const [isClicked, setIsClicked] = useState(false);
   const [scrolledNavbar, setScrolledNavbar] = useState(false);
 
-  function onToggleNavbar(){
+  function toggleNavbar(){
     setIsClicked(!isClicked);
   }
 
-  function onChangeNavbar(){
+  function changeNavbar(){
     if(window.scrollY > 0){
       setScrolledNavbar(true);
     }else{
@@ -20,7 +20,7 @@ export default function navbar() {
     }
   }
 
-  window.addEventListener('scroll', onChangeNavbar);
+  window.addEventListener('scroll', changeNavbar);
 
   return (
     <header className={`${scrolledNavbar? "shadow-md":"shadow-none"} ${isClicked? "shadow-none":"shadow-md"} px-8 md:px-16 py-4 sticky top-0 z-20 bg-white bg-opacity-10 backdrop-blur-sm`}>
@@ -57,7 +57,7 @@ export default function navbar() {
         </div>
 
         <div className="flex md:hidden "> 
-          <button onClick={onToggleNavbar}>{isClicked?<VscClose className="h-6 w-6"/>:<RxHamburgerMenu className="h-6 w-6"/>}</button>
+          <button onClick={toggleNavbar}>{isClicked?<VscClose className="h-6 w-6"/>:<RxHamburgerMenu className="h-6 w-6"/>}</button>
         </div>
       </nav>
     </header>
