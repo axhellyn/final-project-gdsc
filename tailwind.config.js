@@ -7,10 +7,12 @@ export default {
         'poppins':['Poppins', 'sans-serif'],
       },
       colors:{
+        'softPink':'#FFECF9',
         'pink':'#F1BCFF',
         'darkPink': '#E697FA',
         'purple':'#BBB6FF',
         'darkPurple':'#9188FF',
+        'softBlue':'#ECF9FF',
         'gray':'#626262'
       }
     },
