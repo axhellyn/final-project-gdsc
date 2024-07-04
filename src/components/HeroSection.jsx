@@ -4,8 +4,8 @@ import Button from "./ui/Button";
 
 export default function HeroSection() {
   return (
-    <div className="min-h-[90vh] px-8 md:px-16">
-      <div className="flex flex-col md:flex-row gap-10 justify-between items-center">
+    <div className="min-h-screen md:h-[90vh] px-8 md:px-16">
+      <div className="flex h-full flex-col md:flex-row gap-10 justify-between items-center">
         <div className="md:w-1/2">
           <img src={DonutHero} alt="donut" />
         </div>
