@@ -6,8 +6,8 @@ import Donut from '../assets/donutAboutUs.png'
 
 export default function AboutUsSection() {
   return (
-    <div className='h-screen w-full px-8 md:px-16 py-8 md:py-16'>
-        <div className='w-full h-full flex flex-col gap-10 md:gap-0 md:flex-row items-center'>
+    <div className='min-screen md:h-screen w-full px-8 py-10 md:py-0 md:p-16'>
+        <div className='w-full h-full flex flex-col gap-10 md:gap-0 md:flex-row items-center justify-center'>
             <div className='w-full md:w-1/2 flex flex-col gap-4 md:pr-10'>
                 <div className='flex gap-3'>
                     <h1 className='text-3xl md:text-4xl xl:text-5xl font-bold'>About</h1>

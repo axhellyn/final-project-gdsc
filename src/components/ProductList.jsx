@@ -5,7 +5,7 @@ export default function ProductList({onVisible}) {
 
     return (
     <div>
-      <div className="flex flex-wrap items-center justify-center mt-10">
+      <div className="flex flex-wrap items-center justify-center">
           {products.slice(0, onVisible).map((e) => (
             <Product
               key={e.id}

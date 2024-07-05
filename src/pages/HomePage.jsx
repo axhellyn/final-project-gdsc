@@ -3,6 +3,7 @@ import Navbar from '../components/ui/Navbar';
 import HeroSection from '../components/HeroSection';
 import AboutUsSection from '../components/AboutUsSection'
 import ProductsSection from '../components/ProductsSection';
+import ContactUsSection from '../components/ContactUsSection';
 
 function HomePage() {
   return (
@@ -11,6 +12,7 @@ function HomePage() {
     <HeroSection/>
     <AboutUsSection/>
     <ProductsSection/>
+    <ContactUsSection/>
     </div>
   )
 }

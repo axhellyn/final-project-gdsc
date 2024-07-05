@@ -10,7 +10,7 @@ export default function ProductsSection() {
   }
 
   return (
-    <div className="min-h-screen px-8 md:px-8 py-8 md:py-16 mt-12 md:mt-0">
+    <div className="min-h-screen p-8 md:px-16 md:pb-20">
       <div className="h-full flex flex-col gap-8 flex-wrap items-center justify-center">
         <div className="flex gap-3">
           <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold">Our</h1>
