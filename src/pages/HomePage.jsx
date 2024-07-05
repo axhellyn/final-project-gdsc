@@ -4,6 +4,7 @@ import HeroSection from '../components/HeroSection';
 import AboutUsSection from '../components/AboutUsSection'
 import ProductsSection from '../components/ProductsSection';
 import ContactUsSection from '../components/ContactUsSection';
+import Footer from '../components/ui/Footer';
 
 function HomePage() {
   return (
@@ -13,6 +14,7 @@ function HomePage() {
     <AboutUsSection/>
     <ProductsSection/>
     <ContactUsSection/>
+    <Footer/>
     </div>
   )
 }
