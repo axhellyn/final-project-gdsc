@@ -8,8 +8,7 @@ import Footer from '../components/ui/Footer';
 
 function HomePage() {
   return (
-    <div className='bg-gradient-to-br from-white via-softPink via-65%% to-white'>
-    <Navbar/>
+    <div>
     <HeroSection/>
     <AboutUsSection/>
     <ProductsSection/>
