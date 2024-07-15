@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { VscClose } from "react-icons/vsc";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { ShopContext } from "../../context/ShopContext";
 
 export default function navbar() {
   const [isClicked, setIsClicked] = useState(false);
   const [scrolledNavbar, setScrolledNavbar] = useState(false);
   const [menu, setMenu] = useState('home');
+  const {getTotalItems} = useContext(ShopContext);
 
   function toggleNavbar(){
     setIsClicked(!isClicked);
@@ -55,6 +57,9 @@ export default function navbar() {
         <div className={`${isClicked? "top-[200px]":"-top-64"} w-full md:w-auto flex gap-6 md:static absolute left-0 px-8 md:px-0 py-4 md:py-0 bg-white bg-opacity-10 md:bg-opacity-0 backdrop-blur-sm md:backdrop-blur-none shadow-md  md:shadow-none`}>
           <Link to='/Cart' onClick={()=>setMenu('cart')}>
             <FiShoppingCart className="h-6 w-6 cursor-pointer" />
+            <div className={`${getTotalItems() > 0 ? "block" : "hidden"} w-4 h-4 absolute bottom-3 md:-bottom-1 md:-left-1 z-50 rounded-full bg-darkPurple text-white text-xs text-center`}>
+              <span>{getTotalItems()}</span>
+            </div>
           </Link>
           <div>
             <CgProfile className="h-6 w-6 cursor-pointer" />
