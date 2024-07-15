@@ -3,6 +3,7 @@ import SecondaryButton from "./SecondaryButton";
 import { FaInstagram } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -11,14 +12,14 @@ export default function Footer() {
         <h1 className="text-4xl font-bold text-white cursor-default">Donut.</h1>
         <ul>
           <li>
-            <a className="text-white hover:text-softPink" href="">
+            <Link className="text-white hover:text-softPink" to="/">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="text-white hover:text-softPink" href="">
+            <Link className="text-white hover:text-softPink" to="/">
               About Us
-            </a>
+            </Link>
           </li>
           <li>
             <a className="text-white hover:text-softPink" href="">

@@ -1,7 +1,6 @@
 import "./index.css";
 import HomePage from "./pages/HomePage";
 import {
-  createBrowserRouter,
   Routes,
   Route,
   BrowserRouter,
@@ -21,6 +20,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/Cart" element={<Cart />} />
           </Routes>
+          <Footer/>
         </BrowserRouter>
       </ShopContextProvider>
     </div>

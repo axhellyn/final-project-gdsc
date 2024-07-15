@@ -13,7 +13,6 @@ function HomePage() {
     <AboutUsSection/>
     <ProductsSection/>
     <ContactUsSection/>
-    <Footer/>
     </div>
   )
 }
