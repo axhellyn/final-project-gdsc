@@ -9,6 +9,7 @@ import Navbar from "./components/ui/Navbar";
 import Cart from "./pages/Cart";
 import ShopContextProvider from "./context/ShopContext";
 import Footer from "./components/ui/Footer";
+import DetailedProduct from "./pages/DetailedProduct";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/Cart" element={<Cart />} />
+            <Route path="/Donut" element={<DetailedProduct/>}>
+              <Route path=":productId"/>
+            </Route>
           </Routes>
           <Footer/>
         </BrowserRouter>
