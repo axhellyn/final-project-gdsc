@@ -1,8 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import DonutHero from "../assets/donutHero.png";
 import Button from "./ui/Button";
 
-export default function HeroSection() {
+const HeroSection= forwardRef((props, ref) =>{
+  const {onClick} = props;
+
   return (
     <div className="min-h-screen md:h-[90vh] px-8 md:px-16">
       <div className="flex h-full flex-col md:flex-row gap-10 justify-between items-center">
@@ -23,11 +25,13 @@ export default function HeroSection() {
             <h3 className="text-xl md:text-2xl text-purple ">Shop Our Perfect Donut Now!</h3>
             <p className="text-base xl:text-lg text-gray py-2">Each bite is a journey of flavor, crafted with love and the finest ingredients. Treat yourself or surprise someone special with our delightful selection of donuts.</p>
             <div className="w-full flex justify-center mt-10">
-              <Button textButton='Get Your Donut'/>
+              <Button textButton='Get Your Donut' onClick={() => onClick(ref)}/>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+});
+
+export default HeroSection;

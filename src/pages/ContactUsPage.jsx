@@ -1,33 +1,36 @@
-import React, { useRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import ContactUsSection from "../components/ContactUsSection";
 import SecondaryButton from "../components/ui/SecondaryButton";
 
-export default function ContactUsPage() {
-    const contactUsSection = useRef(null);
-
-    const scrollToSection = (ref) => {
-        ref.current.scrollIntoView({ behavior: 'smooth' });
-      };
+const ContactUsPage = forwardRef((props, ref) => {
+  const { onClick } = props;
 
   return (
     <div>
       <section className="h-screen md:h-[80vh] px-8 md:px-16 py-10">
         <div className="h-full flex justify-center items-center">
-            <div className="flex flex-col gap-4 justify-center items-center">
-                <div className="flex flex-wrap justify-center items-center gap-2 text-3xl md:text-4xl xl:text-5xl font-bold">
-                    <h1>Contact Us for a</h1>
-                    <h1 className="text-darkPink">Sweet</h1>
-                    <h1 className="text-darkPurple">Experience!</h1>
-                </div>
-                <p className="w-full md:w-4/5 text-sm md:text-base text-center text-gray">Our dedicated team is always ready to assist you with any inquiries or special requests you may have. From order tracking to custom donut designs, we're here to ensure your satisfaction.</p>
-                <div className="mt-4">
-                    <SecondaryButton onClick={() => scrollToSection(contactUsSection)} textButton={"Get In Touch"}/>
-                </div>
+          <div className="flex flex-col gap-4 justify-center items-center">
+            <div className="flex flex-wrap justify-center items-center gap-2 text-3xl md:text-4xl xl:text-5xl font-bold">
+              <h1>Contact Us for a</h1>
+              <h1 className="text-darkPink">Sweet</h1>
+              <h1 className="text-darkPurple">Experience!</h1>
             </div>
+            <p className="w-full md:w-4/5 text-sm md:text-base text-center text-gray">
+              Our dedicated team is always ready to assist you with any
+              inquiries or special requests you may have. From order tracking to
+              custom donut designs, we're here to ensure your satisfaction.
+            </p>
+            <div className="mt-4">
+              <SecondaryButton
+                onClick={() => onClick(ref)}
+                textButton={"Get In Touch"}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-            <ContactUsSection ref={contactUsSection}/>
+      <ContactUsSection ref={ref} />
       <section className="h-fit mt-10 px-8 py-10 md:px-16">
         <div className="flex flex-col gap-8 justify-center items-center">
           <div className="flex flex-wrap justify-center items-center gap-2 text-3xl md:text-4xl xl:text-5xl font-bold">
@@ -59,4 +62,6 @@ export default function ContactUsPage() {
       </section>
     </div>
   );
-}
+});
+
+export default ContactUsPage;

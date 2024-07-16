@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import SecondaryButton from './ui/SecondaryButton'
 import { FaInstagram } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
 import Donut from '../assets/donutAboutUs.png'
 
-export default function AboutUsSection() {
+const AboutUsSection = forwardRef((props, ref) => {
   return (
-    <div className='min-screen md:h-screen w-full px-8 py-10 md:py-0 md:p-16'>
+    <div className='min-screen md:h-screen w-full px-8 py-10 md:py-0 md:p-16' ref={ref}>
         <div className='w-full h-full flex flex-col gap-10 md:gap-0 md:flex-row items-center justify-center'>
             <div className='w-full md:w-1/2 flex flex-col gap-4 md:pr-10'>
                 <div className='flex gap-3'>
@@ -26,5 +26,7 @@ export default function AboutUsSection() {
             </div>
         </div>
     </div>
-  )
-}
+  );
+});
+
+export default AboutUsSection;
