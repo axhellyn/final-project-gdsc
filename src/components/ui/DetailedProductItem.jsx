@@ -12,7 +12,7 @@ export default function DetailedProductItem({ product }) {
   return (
     <div className="min-h-screen px-8 py-10 md:px-16 md:py-4">
       <div className="flex flex-col md:flex-row gap-8 md:py-10">
-        <div className="md:w-1/2 rounded-xl md:border-r-4  border-purple">
+        <div className="md:w-1/2 rounded-sm md:border-r-4 border-purple">
           <img src={product.imgUrl} alt="donut img" />
         </div>
 

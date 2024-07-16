@@ -27,9 +27,9 @@ export default function Footer() {
             </a>
           </li>
           <li>
-            <a className="text-white hover:text-softPink" href="">
+            <Link className="text-white hover:text-softPink" to="/ContactUs">
               Contact Us
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="flex gap-4 items-center">

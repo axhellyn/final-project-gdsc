@@ -1,14 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Button from "./ui/Button";
 import ContactForm from "./ui/ContactForm";
 import SecondaryButton from "./ui/SecondaryButton";
 import { FaInstagram } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import ContactUsPage from "../pages/ContactUsPage";
 
-export default function ContactUsSection() {
+const ContactUsSection = forwardRef((props, ref) => {
   return (
-    <div className="min-h-screen md:h-screen px-8 py-10 md:px-16 md:py-20">
+    <div className="min-h-screen md:h-screen px-8 py-10 md:px-16 md:py-20" ref={ref}>
       <div className="w-full flex flex-col md:flex-row gap-8 justify-center">
         <div className="w-full flex flex-col gap-8 md:w-1/2 md:mr-10">
           <div className="flex gap-3">
@@ -46,4 +47,6 @@ export default function ContactUsSection() {
       </div>
     </div>
   );
-}
+});
+
+export default ContactUsSection;

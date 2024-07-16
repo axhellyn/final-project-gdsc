@@ -1,15 +1,12 @@
 import "./index.css";
 import HomePage from "./pages/HomePage";
-import {
-  Routes,
-  Route,
-  BrowserRouter,
-} from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Navbar from "./components/ui/Navbar";
 import Cart from "./pages/Cart";
 import ShopContextProvider from "./context/ShopContext";
 import Footer from "./components/ui/Footer";
 import DetailedProduct from "./pages/DetailedProduct";
+import ContactUsPage from "./pages/ContactUsPage";
 
 function App() {
   return (
@@ -19,6 +16,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/ContactUs" element={<ContactUsPage />} />
             <Route path="/Cart" element={<Cart />} />
             <Route path="/Donut" element={<DetailedProduct/>}>
               <Route path=":productId"/>
