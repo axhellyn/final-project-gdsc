@@ -8,7 +8,7 @@ const ContactUsPage = forwardRef((props, ref) => {
 
   return (
     <div>
-      <div className="h-screen md:h-[80vh] px-8 md:px-16 py-10">
+      <div className="h-screen md:h-[85vh] px-8 md:px-16 py-10">
         <div className="h-full flex justify-center items-center">
           <div className="flex flex-col gap-4 justify-center items-center">
             <div className="flex flex-wrap justify-center items-center gap-2 text-3xl md:text-4xl xl:text-5xl font-bold">

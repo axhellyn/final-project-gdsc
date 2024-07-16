@@ -8,6 +8,7 @@ import ShopContextProvider from "./context/ShopContext";
 import Footer from "./components/ui/Footer";
 import DetailedProduct from "./pages/DetailedProduct";
 import ContactUsPage from "./pages/ContactUsPage";
+import ProductPage from "./pages/ProductPage";
 
 function App() {
   const contactUsSection = useRef(null);
@@ -24,6 +25,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage onClick={scrollToSection} ref={aboutUsSection}/>} />
+            <Route path="/Product" element={<ProductPage />} />
             <Route path="/ContactUs" element={<ContactUsPage onClick={scrollToSection} ref={contactUsSection}/>} />
             <Route path="/Cart" element={<Cart />} />
             <Route path="/Donut" element={<DetailedProduct/>}>
