@@ -17,11 +17,6 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <Link className="text-white hover:text-softPink" to="/">
-              About Us
-            </Link>
-          </li>
-          <li>
             <a className="text-white hover:text-softPink" href="">
               Products
             </a>
