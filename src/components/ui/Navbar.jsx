@@ -3,13 +3,25 @@ import { FiShoppingCart } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { VscClose } from "react-icons/vsc";
-import { Link, Outlet, NavLink } from "react-router-dom";
+import { Link, Outlet, NavLink, useNavigate } from "react-router-dom";
 import { ShopContext } from "../../context/ShopContext";
+import SecondaryButton from "./SecondaryButton";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebaseConfig";
 
-export default function navbar() {
+export default function navbar({ user }) {
+  console.log(user);
   const [isClicked, setIsClicked] = useState(false);
   const [scrolledNavbar, setScrolledNavbar] = useState(false);
   const { getTotalItems } = useContext(ShopContext);
+
+  const navigate = useNavigate();
+
+  function handleLogut(){
+      signOut(auth).then(() => {
+          navigate("/Login");
+      })
+  }
 
   function toggleNavbar() {
     setIsClicked(!isClicked);
@@ -88,9 +100,9 @@ export default function navbar() {
         <div
           className={`${
             isClicked ? "top-[199px]" : "-top-64"
-          } w-full md:w-auto flex gap-6 md:static absolute left-0 px-8 md:px-0 py-4 md:py-0 bg-white bg-opacity-100 md:bg-opacity-0 backdrop-blur-sm md:backdrop-blur-none shadow-md  md:shadow-none`}
+          } w-full md:w-auto flex items-center gap-6 md:static absolute left-0 px-8 md:px-0 py-4 md:py-0 bg-white bg-opacity-100 md:bg-opacity-0 backdrop-blur-sm md:backdrop-blur-none shadow-md md:shadow-none`}
         >
-          <Link to="/Cart" onClick={() => setMenu("cart")}>
+          <Link to="/Cart">
             <FiShoppingCart className="h-6 w-6 cursor-pointer" />
             <div
               className={`${
@@ -100,9 +112,19 @@ export default function navbar() {
               <span>{getTotalItems()}</span>
             </div>
           </Link>
-          <div>
+          {!user && (
+            <Link to="/Login">
+              <CgProfile className="h-6 w-6 cursor-pointer" />
+            </Link>
+          )}
+          {/* {user && <Link to="/Profile" className="flex gap-2"> 
             <CgProfile className="h-6 w-6 cursor-pointer" />
-          </div>
+            {user}
+          </Link>
+          } */}
+          {user && (
+            <SecondaryButton textButton={"Logout"} onClick={handleLogut}/>
+          )}
         </div>
 
         <div className="flex md:hidden">
