@@ -17,9 +17,9 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <a className="text-white hover:text-softPink" href="">
+            <Link className="text-white hover:text-softPink" to="/Product">
               Products
-            </a>
+            </Link>
           </li>
           <li>
             <Link className="text-white hover:text-softPink" to="/ContactUs">
