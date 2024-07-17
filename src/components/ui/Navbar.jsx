@@ -34,7 +34,7 @@ export default function navbar() {
       <nav className="w-full flex justify-between items-center">
         <div>
           <a href="/" className="text-2xl font-bold cursor-pointer">
-            Donut.
+            Donutopia.
           </a>
         </div>
         <ul

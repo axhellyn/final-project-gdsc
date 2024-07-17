@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <div className="min-h-fit md:h-[50vh] bg-gradient-to-b from-pink to-purple mt-10 to-80%">
       <div className="h-full px-8 py-10 md:p-16 flex flex-wrap md:flex-row gap-8 justify-between items-center">
-        <h1 className="text-4xl font-bold text-white cursor-default">Donut.</h1>
+        <h1 className="text-4xl font-bold text-white cursor-default">Donutopia.</h1>
         <ul>
           <li>
             <Link className="text-white hover:text-softPink" to="/">
@@ -35,7 +35,7 @@ export default function Footer() {
       </div>
 
       <div className="w-full flex justify-center border-t-2 border-white bg-purple p-4">
-        <p className="text-white">&copy; 2024 Donut.</p>
+        <p className="text-white">&copy; 2024 Donutopia.</p>
       </div>
     </div>
   );
