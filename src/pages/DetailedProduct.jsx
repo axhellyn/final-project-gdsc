@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IoIosArrowBack } from "react-icons/io";
 import { Link, useParams } from 'react-router-dom';
-import { products } from '../utils/data';
-import donut2 from '../assets/candyDonut.png'
 import DetailedProductItem from '../components/ui/DetailedProductItem';
+import { ShopContext } from '../context/ShopContext';
 
 export default function DetailedProduct() {
+    const { products } = useContext(ShopContext);
+
     const { productId } = useParams();
-    const product = products.find((product)=> product.id == productId);
 
   return (
     <div>
-        <DetailedProductItem product={product}/>
+      {
+        products.map(product => {
+          if(product.id == productId){
+            return <DetailedProductItem key={product.id} product={product}/>
+          }
+        })
+      }
     </div>
   )
 }
