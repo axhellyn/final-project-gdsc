@@ -16,28 +16,11 @@ import { auth, db } from "./firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import AddProduct from "./pages/AddProduct";
+import AuthContextProvider from "./context/AuthContext";
 
 function App() {
   const contactUsSection = useRef(null);
   const aboutUsSection = useRef(null);
-
-  function getCurrentUser() {
-    const [user, setUser] = useState(null);
-    useEffect(() => {
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          const querySnapshot = await getDoc(doc(db, "users", user.uid));
-          setUser(querySnapshot.data().firstName);
-        } else {
-          setUser(null);
-        }
-      });
-    }, []);
-
-    return user;
-  }
-
-  const user = getCurrentUser();
 
   const scrollToSection = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
@@ -45,38 +28,40 @@ function App() {
 
   return (
     <div className="font-poppins bg-gradient-to-br from-white via-softPink via-65%% to-white">
-      <ShopContextProvider>
-        <BrowserRouter>
-          <Navbar user={user}/>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <HomePage onClick={scrollToSection} ref={aboutUsSection} />
-              }
-            />
-            <Route path="/Product" element={<ProductPage />} />
-            <Route
-              path="/ContactUs"
-              element={
-                <ContactUsPage
-                  onClick={scrollToSection}
-                  ref={contactUsSection}
-                />
-              }
-            />
-            <Route path="/Cart" element={<Cart />} />
-            <Route path="/SignUp" element={<Signup />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Profile" element={<Profile />} />
-            <Route path="/Donut">
-              <Route path=":productId" element={<DetailedProduct />}/>
-            </Route>
-            <Route path="/AddProduct" element={<AddProduct />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </ShopContextProvider>
+      <AuthContextProvider>
+        <ShopContextProvider>
+          <BrowserRouter>
+            <Navbar/>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <HomePage onClick={scrollToSection} ref={aboutUsSection} />
+                }
+              />
+              <Route path="/Product" element={<ProductPage />} />
+              <Route
+                path="/ContactUs"
+                element={
+                  <ContactUsPage
+                    onClick={scrollToSection}
+                    ref={contactUsSection}
+                  />
+                }
+              />
+              <Route path="/Cart" element={<Cart />} />
+              <Route path="/SignUp" element={<Signup />} />
+              <Route path="/Login" element={<Login />} />
+              <Route path="/Profile" element={<Profile />} />
+              <Route path="/Donut">
+                <Route path=":productId" element={<DetailedProduct />} />
+              </Route>
+              <Route path="/AddProduct" element={<AddProduct />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </ShopContextProvider>
+      </AuthContextProvider>
     </div>
   );
 }
