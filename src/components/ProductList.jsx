@@ -1,9 +1,9 @@
 import Product from "./ui/Product";
-import { products } from "../utils/data";
+import { ShopContext } from "../context/ShopContext";
+import { useContext } from "react";
 
 export default function ProductList({onVisible}) {
-    
-
+    const { products } = useContext(ShopContext);
 
     return (
     <div>

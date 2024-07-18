@@ -1,10 +1,33 @@
 import React, { createContext, useEffect, useState } from "react";
-import { products } from '../utils/data';
+import { collection, getDocs } from "firebase/firestore";
+import { auth, db } from "../firebase/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const ShopContext = createContext(null);
 
 export default function ShopContextProvider(props) {
-  const [cartItems, setCartItems] = useState(getDefaultCart());  
+  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState(getDefaultCart());
+
+  //get products
+  const getProducts = async () => {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    const productsArray = [];
+    querySnapshot.forEach((doc) => {
+      const product = doc.data();
+      product.id = doc.id;
+
+      productsArray.push({ ...product });
+
+      if (productsArray.length === querySnapshot.docs.length) {
+        setProducts(productsArray);
+      }
+    });
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   function getDefaultCart() {
     let cart = {};
@@ -16,7 +39,7 @@ export default function ShopContextProvider(props) {
   }
 
   function addToCart(id) {
-    setCartItems((prev) => ({ ...prev, [id]: prev[id] + 1 }));
+    setCartItems((prev) => ({ ...prev, [id]: prev[id] + 1 }));      
   }
 
   function removeFromCart(id) {
@@ -62,6 +85,7 @@ export default function ShopContextProvider(props) {
   return (
     <ShopContext.Provider
       value={{
+        products,
         cartItems,
         addToCart,
         removeFromCart,
