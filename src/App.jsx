@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import { auth, db } from "./firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
+import AddProduct from "./pages/AddProduct";
 
 function App() {
   const contactUsSection = useRef(null);
@@ -33,7 +34,7 @@ function App() {
           setUser(null);
         }
       });
-    }, );
+    }, []);
 
     return user;
   }
@@ -73,6 +74,7 @@ function App() {
             <Route path="/Donut" element={<DetailedProduct />}>
               <Route path=":productId" />
             </Route>
+            <Route path="/AddProduct" element={<AddProduct />} />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -10,7 +10,6 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 
 export default function navbar({ user }) {
-  console.log(user);
   const [isClicked, setIsClicked] = useState(false);
   const [scrolledNavbar, setScrolledNavbar] = useState(false);
   const { getTotalItems } = useContext(ShopContext);

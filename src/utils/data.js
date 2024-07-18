@@ -54,7 +54,7 @@ export const products = [
     imgUrl: "../src/assets/chocoDonut.png",
     variant: "Cocoa Delight",
     category: "other",
-    detail: "Donut with a luscious strawberry icing",
+    detail: "Donut with a luscious chocolate icing",
     description:
       "Delight in our Chocolate Donut! This decadent donut is coated in a rich chocolate glaze. Each bite is a chocolate lover's dream come true.",
     price: 14300,
