@@ -14,7 +14,7 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import { auth, db } from "./firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import AddProduct from "./pages/AddProduct";
 
 function App() {
@@ -26,10 +26,8 @@ function App() {
     useEffect(() => {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
-          const querySnapshot = await getDocs(collection(db, "users"));
-          querySnapshot.forEach((doc) => {
-            setUser(doc.data().firstName);
-          });
+          const querySnapshot = await getDoc(doc(db, "users", user.uid));
+          setUser(querySnapshot.data().firstName);
         } else {
           setUser(null);
         }

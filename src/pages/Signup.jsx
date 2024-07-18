@@ -39,7 +39,7 @@ export default function Signup() {
       setErrorMessage("");
 
       setTimeout(() => {
-        navigate("/Login");
+        navigate("/");
       }, 3000);
     } catch (error) {
       setErrorMessage("*Invalid");
