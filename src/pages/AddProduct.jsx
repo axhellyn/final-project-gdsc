@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Button from '../components/ui/Button';
 import { db, storage } from '../firebase/firebaseConfig';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 export default function AddProduct() {

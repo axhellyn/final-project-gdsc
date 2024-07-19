@@ -1,5 +1,4 @@
 import React from "react";
-import SecondaryButton from "./SecondaryButton";
 import { FaInstagram } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";

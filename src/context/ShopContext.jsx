@@ -74,6 +74,7 @@ export default function ShopContextProvider({children}) {
     getCartProducts();
     }, [uid]);
 
+    //cart item increament
   const cartProductInc = (product) => {
     Product = product;
     Product.qty = product.qty + 1;
@@ -88,6 +89,7 @@ export default function ShopContextProvider({children}) {
     });
   };
 
+  //delete cart item
   const cartProductDelete = (product) => {
     const productRef = doc(db, `cart${uid}`, product.id);
 
@@ -99,6 +101,7 @@ export default function ShopContextProvider({children}) {
     });
   };
 
+  // cart item decreament
   const cartProductDec = (product) => {
     if (product.qty > 1) {
       Product = product;
@@ -117,6 +120,7 @@ export default function ShopContextProvider({children}) {
     }
   };
 
+  //total product
   const getTotalProducts = () => {
     const qty = cartItems.map((item) => {
       return item.qty;
@@ -129,6 +133,7 @@ export default function ShopContextProvider({children}) {
     return totalQty;
   }
 
+  //total price
   const getTotalPrice = () => {
     const price = cartItems.map((item) => {
       return item.totalItemPrice;
@@ -141,6 +146,7 @@ export default function ShopContextProvider({children}) {
     return totalPrice;
   }
 
+  //rupiah format
   function rupiahFormat(price) {
     const formatter = new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -149,8 +155,6 @@ export default function ShopContextProvider({children}) {
     });
     return formatter.format(price);
   }
-
-  // getCartProducts();
 
   useEffect(() => {
     getProducts();

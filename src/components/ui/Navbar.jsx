@@ -6,23 +6,12 @@ import { VscClose } from "react-icons/vsc";
 import { Link, Outlet, NavLink, useNavigate } from "react-router-dom";
 import { ShopContext } from "../../context/ShopContext";
 import { AuthContext } from "../../context/AuthContext";
-import SecondaryButton from "./SecondaryButton";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/firebaseConfig";
 
 export default function navbar() {
   const [isClicked, setIsClicked] = useState(false);
   const [scrolledNavbar, setScrolledNavbar] = useState(false);
   const { totalQty } = useContext(ShopContext);
   const { userName } = useContext(AuthContext);
-
-  const navigate = useNavigate();
-
-  function handleLogut(){
-    signOut(auth).then(() => {
-        navigate("/Login");
-    })
-}
 
   function toggleNavbar() {
     setIsClicked(!isClicked);

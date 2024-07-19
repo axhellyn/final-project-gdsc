@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { auth, db } from "../firebase/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setDoc, doc, collection, addDoc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { PiEyeClosedBold } from "react-icons/pi";
 import { HiMiniEye } from "react-icons/hi2";
 

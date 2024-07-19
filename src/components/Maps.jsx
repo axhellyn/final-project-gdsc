@@ -1,8 +1,12 @@
 import React from "react";
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
 export default function Maps() {
+  Aos.init({once: true});
+
   return (
-    <div className="h-fit mt-10 px-8 py-10 md:px-16">
+    <div className="h-fit mt-10 px-8 py-10 md:px-16" data-aos="fade-up" data-aos-duration="1000">
       <div className="flex flex-col gap-8 justify-center items-center">
         <div className="flex flex-wrap justify-center items-center gap-2 text-3xl md:text-4xl xl:text-5xl font-bold">
           <h1>Find</h1>

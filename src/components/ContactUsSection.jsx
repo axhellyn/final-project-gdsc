@@ -1,17 +1,19 @@
 import React, { forwardRef } from "react";
-import Button from "./ui/Button";
 import ContactForm from "./ui/ContactForm";
 import SecondaryButton from "./ui/SecondaryButton";
 import { FaInstagram } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import ContactUsPage from "../pages/ContactUsPage";
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
 const ContactUsSection = forwardRef((props, ref) => {
+  Aos.init({once: true});
+
   return (
     <div className="mb-16 md:mb-0 min-h-fit md:h-screen px-8 py-10 md:px-16 md:py-20" ref={ref}>
       <div className="w-full flex flex-col md:flex-row gap-8 justify-center">
-        <div className="w-full flex flex-col gap-8 md:w-1/2 md:mr-10">
+        <div className="w-full flex flex-col gap-8 md:w-1/2 md:mr-10" data-aos="fade-right" data-aos-duration="1000">
           <div className="flex gap-3">
             <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold ">
               Contact
@@ -41,7 +43,7 @@ const ContactUsSection = forwardRef((props, ref) => {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-center md:justify-end">
+        <div className="w-full md:w-1/2 flex items-center justify-center md:justify-end" data-aos="fade-left" data-aos-duration="1000">
           <ContactForm />
         </div>
       </div>

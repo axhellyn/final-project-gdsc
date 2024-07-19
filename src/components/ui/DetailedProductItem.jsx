@@ -2,11 +2,9 @@ import React, { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import SecondaryButton from "./SecondaryButton";
 import { FaTruckFast } from "react-icons/fa6";
-import { FaPlus } from "react-icons/fa";
-import { TiMinus } from "react-icons/ti";
 
 export default function DetailedProductItem({ product }) {
-  const { rupiahFormat, addToCart, removeFromCart, cartItems } =
+  const { rupiahFormat, addToCart } =
     useContext(ShopContext);
 
   return (

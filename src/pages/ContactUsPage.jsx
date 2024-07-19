@@ -1,9 +1,12 @@
-import React, { forwardRef, useRef } from "react";
+import React, { forwardRef } from "react";
 import ContactUsSection from "../components/ContactUsSection";
 import SecondaryButton from "../components/ui/SecondaryButton";
 import Maps from "../components/Maps";
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
 const ContactUsPage = forwardRef((props, ref) => {
+  Aos.init({once: true});
   const { onClick } = props;
 
   return (

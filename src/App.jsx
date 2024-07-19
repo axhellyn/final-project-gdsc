@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import "./index.css";
 import HomePage from "./pages/HomePage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
@@ -12,9 +12,6 @@ import ProductPage from "./pages/ProductPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
-import { auth, db } from "./firebase/firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import AddProduct from "./pages/AddProduct";
 import AuthContextProvider from "./context/AuthContext";
 

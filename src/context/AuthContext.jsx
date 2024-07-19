@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";

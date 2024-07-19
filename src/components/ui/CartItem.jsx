@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import { IoClose } from "react-icons/io5";
-import Button from "./Button";
 import { FaPlus } from "react-icons/fa";
 import { TiMinus } from "react-icons/ti";
 

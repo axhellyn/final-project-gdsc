@@ -1,18 +1,21 @@
 import React, { forwardRef } from "react";
 import DonutHero from "../assets/donutHero.png";
 import Button from "./ui/Button";
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
 const HeroSection= forwardRef((props, ref) =>{
+  Aos.init({once: true});
   const {onClick} = props;
 
   return (
     <div className="mb-16 md:mb-0 h-screen md:h-[90vh] px-8 md:px-16">
       <div className="flex h-full flex-col md:flex-row gap-10 justify-center md:justify-between items-center">
-        <div className="md:w-1/2">
-          <img src={DonutHero} alt="donut" />
+        <div className="md:w-1/2" data-aos="fade-right" data-aos-duration="1000">
+          <img src={DonutHero} alt="donut"/>
         </div>
 
-        <div className="md:w-1/2 md:pl-12">
+        <div className="md:w-1/2 md:pl-12" data-aos="fade-left" data-aos-duration="1000">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-3">
               <div className="flex gap-3">

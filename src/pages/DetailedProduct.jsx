@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { IoIosArrowBack } from "react-icons/io";
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import DetailedProductItem from '../components/ui/DetailedProductItem';
 import { ShopContext } from '../context/ShopContext';
 
