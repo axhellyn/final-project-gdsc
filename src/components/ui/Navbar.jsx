@@ -25,6 +25,10 @@ export default function navbar() {
     }
   }
 
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
   window.addEventListener("scroll", changeNavbar);
 
   return (
@@ -46,6 +50,7 @@ export default function navbar() {
         >
           <li>
             <NavLink
+              onClick={scrollToTop}
               to="/"
               className={({ isActive, isPending }) =>
                 isPending
@@ -60,6 +65,7 @@ export default function navbar() {
           </li>
           <li>
             <NavLink
+              onClick={scrollToTop}
               to="/Product"
               className={({ isActive, isPending }) =>
                 isPending
@@ -74,6 +80,7 @@ export default function navbar() {
           </li>
           <li>
             <NavLink
+              onClick={scrollToTop}
               to="/ContactUs"
               className={({ isActive, isPending }) =>
                 isPending
@@ -92,7 +99,7 @@ export default function navbar() {
             isClicked ? "top-[199px]" : "-top-64"
           } w-full md:w-auto flex items-center gap-6 md:static absolute left-0 px-8 md:px-0 py-4 md:py-0 bg-white bg-opacity-100 md:bg-opacity-0 backdrop-blur-sm md:backdrop-blur-none shadow-md md:shadow-none`}
         >
-          <Link to="/Cart">
+          <Link onClick={scrollToTop} to="/Cart">
             <FiShoppingCart className="h-6 w-6 cursor-pointer" />
             <div
               className={`${
@@ -103,15 +110,16 @@ export default function navbar() {
             </div>
           </Link>
           {!userName && (
-            <Link to="/Login">
+            <Link to="/Login" onClick={scrollToTop}>
               <CgProfile className="h-6 w-6 cursor-pointer" />
             </Link>
           )}
-          {userName && <Link to="/Profile" className="flex gap-2"> 
-            <CgProfile className="h-6 w-6 cursor-pointer" />
-            {userName}
-          </Link>
-          }
+          {userName && (
+            <Link to="/Profile" className="flex gap-2">
+              <CgProfile className="h-6 w-6 cursor-pointer" />
+              {userName}
+            </Link>
+          )}
         </div>
 
         <div className="flex md:hidden">
