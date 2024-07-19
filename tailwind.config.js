@@ -14,6 +14,9 @@ export default {
         'darkPurple':'#9188FF',
         'softBlue':'#ECF9FF',
         'gray':'#626262'
+      },
+      backgroundImage:{
+        'profile':"url('../src/assets/defaultProfile.png')"
       }
     },
   },

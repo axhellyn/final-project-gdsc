@@ -118,14 +118,11 @@ export default function navbar() {
               <CgProfile className="h-6 w-6 cursor-pointer" />
             </Link>
           )}
-          {/* {user && <Link to="/Profile" className="flex gap-2"> 
+          {userName && <Link to="/Profile" className="flex gap-2"> 
             <CgProfile className="h-6 w-6 cursor-pointer" />
-            {user}
+            {userName}
           </Link>
-          } */}
-          {userName && (
-            <SecondaryButton textButton={"Logout"} onClick={handleLogut}/>
-          )}
+          }
         </div>
 
         <div className="flex md:hidden">

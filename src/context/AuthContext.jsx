@@ -5,8 +5,10 @@ import { doc, getDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 
-export default function AuthContextProvider(props) {
+export default function AuthContextProvider({children}) {
   const [userName, setUserName] = useState(null);
+  const [fullName, setFullName] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
   const [uid, setUid] = useState(null);
   const [user, setUser] = useState(null);
 
@@ -15,8 +17,9 @@ export default function AuthContextProvider(props) {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
           const querySnapshot = await getDoc(doc(db, "users", user.uid));
-          console.log(querySnapshot.data().firstName);
           setUserName(querySnapshot.data().firstName);
+          setUserEmail(querySnapshot.data().email);
+          setFullName(querySnapshot.data().fullName);
         } else {
           setUserName(null);
         }
@@ -52,9 +55,9 @@ export default function AuthContextProvider(props) {
   getUserUid();
   getUser();
 
-  const value = { user, uid, userName };
+  const value = { user, uid, userName, fullName, userEmail };
 
   return (
-    <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
+    <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
   );
 }
