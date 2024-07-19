@@ -9,7 +9,7 @@ import ContactUsPage from "../pages/ContactUsPage";
 
 const ContactUsSection = forwardRef((props, ref) => {
   return (
-    <div className="min-h-screen md:h-screen px-8 py-10 md:px-16 md:py-20" ref={ref}>
+    <div className="mb-16 md:mb-0 min-h-fit md:h-screen px-8 py-10 md:px-16 md:py-20" ref={ref}>
       <div className="w-full flex flex-col md:flex-row gap-8 justify-center">
         <div className="w-full flex flex-col gap-8 md:w-1/2 md:mr-10">
           <div className="flex gap-3">
