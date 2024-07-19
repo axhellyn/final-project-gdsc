@@ -13,8 +13,8 @@ import { auth } from "../../firebase/firebaseConfig";
 export default function navbar() {
   const [isClicked, setIsClicked] = useState(false);
   const [scrolledNavbar, setScrolledNavbar] = useState(false);
-  const { getTotalItems } = useContext(ShopContext);
-  const { user } = useContext(AuthContext);
+  const { totalQty } = useContext(ShopContext);
+  const { userName } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -107,13 +107,13 @@ export default function navbar() {
             <FiShoppingCart className="h-6 w-6 cursor-pointer" />
             <div
               className={`${
-                getTotalItems() > 0 ? "block" : "hidden"
+                totalQty > 0 ? "block" : "hidden"
               } w-4 h-4 absolute bottom-3 md:-bottom-1 md:-left-1 z-50 rounded-full bg-darkPurple text-white text-xs text-center`}
             >
-              <span>{getTotalItems()}</span>
+              <span>{totalQty}</span>
             </div>
           </Link>
-          {!user && (
+          {!userName && (
             <Link to="/Login">
               <CgProfile className="h-6 w-6 cursor-pointer" />
             </Link>
@@ -123,7 +123,7 @@ export default function navbar() {
             {user}
           </Link>
           } */}
-          {user && (
+          {userName && (
             <SecondaryButton textButton={"Logout"} onClick={handleLogut}/>
           )}
         </div>

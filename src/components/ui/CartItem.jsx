@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { TiMinus } from "react-icons/ti";
 
 export default function CartItem({ product }) {
-  const { cartItems, addToCart, removeFromCart, removeAllItems, rupiahFormat } =
+  const { cartProductDec, cartProductInc, cartProductDelete, rupiahFormat } =
     useContext(ShopContext);
 
   return (
@@ -22,23 +22,23 @@ export default function CartItem({ product }) {
           </div>
 
           <div className="md:w-1/5 text-center">
-            <span className="text-base">{rupiahFormat(product.price)}</span>
+            <span className="text-base">{rupiahFormat(product.totalItemPrice)}</span>
           </div>
 
           <div className="md:w-1/5 flex justify-center item-center">
             <div className="flex border-black border-2 rounded-3xl py-[2px] px-2 md:py-1 md:px-3">
               <div
                 className="flex items-center justify-center"
-                onClick={() => removeFromCart(product.id)}
+                onClick={() => cartProductDec(product)}
               >
                 <TiMinus className="h-2 w-2 md:h-3 md:w-3 cursor-pointer" />
               </div>
               <span className="w-8 md:w-10 h-fit text-center py-0 text-sm md:text-base">
-                {cartItems[product.id]}
+                {product.qty}
               </span>
               <div
                 className="flex items-center justify-center"
-                onClick={() => addToCart(product.id)}
+                onClick={() => cartProductInc(product)}
               >
                 <FaPlus className="h-2 w-2 md:h-3 md:w-3 cursor-pointer" />
               </div>
@@ -46,7 +46,7 @@ export default function CartItem({ product }) {
           </div>
 
           <div
-            onClick={() => removeAllItems(product.id)}
+            onClick={() => cartProductDelete(product)}
             className="hidden md:w-1/5 md:flex items-center justify-center opacity-30"
           >
             <IoClose className="h-8 w-8 cursor-pointer" />

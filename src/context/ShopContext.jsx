@@ -1,15 +1,28 @@
-import React, { createContext, useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { auth, db } from "../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
+import { AuthContext } from "./AuthContext";
 
 export const ShopContext = createContext(null);
 
-export default function ShopContextProvider(props) {
-  const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState(getDefaultCart());
+export default function ShopContextProvider({children}) {
+  let Product;
+  const { uid } = useContext(AuthContext);
 
-  //get products
+  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  //get products from firebase
   const getProducts = async () => {
     const querySnapshot = await getDocs(collection(db, "products"));
     const productsArray = [];
@@ -23,52 +36,107 @@ export default function ShopContextProvider(props) {
         setProducts(productsArray);
       }
     });
+
   };
 
+  //add product to cart
+  const addToCart = async (product) => {
+    let Product;
+    Product = product;
+    Product["qty"] = 1;
+    Product["totalItemPrice"] = product.price * Product["qty"];
+
+    await setDoc(doc(db, `cart${uid}`, product.id), Product);
+  };
+
+  //get cart product from firebase
   useEffect(() => {
-    getProducts();
-  }, []);
+      const getCartProducts = () => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const q = query(collection(db, `cart${uid}`));
+          const unsub = onSnapshot(q, (querySnapshot) => {  
+            const newProduct = [];
+            querySnapshot.forEach((doc) => { 
+              newProduct.push({ ...doc.data(), id: doc.id });
+            });
+            setCartItems(newProduct);  
 
-  function getDefaultCart() {
-    let cart = {};
-    for (let i = 1; i < products.length + 1; i++) {
-      cart[i] = 0;
-    }
+          })
+          console.log('success!');
+          return () => unsub;  
+        } else {
+          setCartItems([]);
+        }
+      });
+      // getCartProducts();
+    };
+    getCartProducts();
+    }, [uid]);
 
-    return cart;
-  }
+  const cartProductInc = (product) => {
+    Product = product;
+    Product.qty = product.qty + 1;
+    Product.totalItemPrice = Product.qty * product.price;
 
-  function addToCart(id) {
-    setCartItems((prev) => ({ ...prev, [id]: prev[id] + 1 }));      
-  }
+    const productRef = doc(db, `cart${uid}`, product.id);
 
-  function removeFromCart(id) {
-    setCartItems((prev) => ({ ...prev, [id]: prev[id] - 1 }));
-  }
-
-  function removeAllItems(id) {
-    setCartItems((prev) => ({ ...prev, [id]: (prev[id] = 0) }));
-  }
-
-  function getTotalItems() {
-    let totalItems = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        totalItems += cartItems[item];
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await updateDoc(productRef, Product);
       }
-    }
+    });
+  };
 
-    return totalItems;
+  const cartProductDelete = (product) => {
+    const productRef = doc(db, `cart${uid}`, product.id);
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await deleteDoc(productRef).then(()=>{
+        })
+      }
+    });
+  };
+
+  const cartProductDec = (product) => {
+    if (product.qty > 1) {
+      Product = product;
+      Product.qty = product.qty - 1;
+      Product.totalItemPrice = Product.qty * product.price;
+
+      const productRef = doc(db, `cart${uid}`, product.id);
+
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          await updateDoc(productRef, Product);
+        }
+      });
+    } else {
+      cartProductDelete(product);
+    }
+  };
+
+  const getTotalProducts = () => {
+    const qty = cartItems.map((item) => {
+      return item.qty;
+    })
+
+    const reducerQty = (accumulator, currentValue) => accumulator+currentValue;
+
+    const totalQty = qty.reduce( reducerQty, 0);
+
+    return totalQty;
   }
 
-  function getPriceTotal() {
-    let totalPrice = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        let productPrice = products.find((product) => product.id == item).price;
-        totalPrice += productPrice * cartItems[item];
-      }
-    }
+  const getTotalPrice = () => {
+    const price = cartItems.map((item) => {
+      return item.totalItemPrice;
+    })
+
+    const reducerPrice = (accumulator, currentValue) => accumulator+currentValue;
+
+    const totalPrice = price.reduce(reducerPrice, 0);
 
     return totalPrice;
   }
@@ -82,20 +150,32 @@ export default function ShopContextProvider(props) {
     return formatter.format(price);
   }
 
+  // getCartProducts();
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const totalQty = getTotalProducts();
+  const totalPrice = getTotalPrice();
+
+  const value = {
+    products,
+    cartItems,
+    addToCart,
+    rupiahFormat,
+    cartProductInc,
+    cartProductDec,
+    cartProductDelete,
+    totalQty,
+    totalPrice
+  }
+
   return (
     <ShopContext.Provider
-      value={{
-        products,
-        cartItems,
-        addToCart,
-        removeFromCart,
-        getTotalItems,
-        removeAllItems,
-        getPriceTotal,
-        rupiahFormat,
-      }}
+      value={value}
     >
-      {props.children}
+      {children}
     </ShopContext.Provider>
   );
 }
