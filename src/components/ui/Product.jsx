@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import SecondaryButton from "./SecondaryButton";
 import { ShopContext } from "../../context/ShopContext";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Product({ product }) {
+  const [click, setclick] = useState(true);
   const navigate = useNavigate();
 
   const { cartProductInc, addToCart, cartItems, rupiahFormat } =
@@ -13,7 +14,10 @@ export default function Product({ product }) {
 
   function handleAddProduct(product) {
     if (uid !== null) {
-        addToCart(product);
+        addToCart(product); 
+        if(click)   {
+          setclick(false);
+        }
     } else {
       alert("Please Login first!");
       navigate("/Login");
@@ -37,7 +41,7 @@ export default function Product({ product }) {
         <div className="flex justify-center mt-4">
           {/* <SecondaryButton textButton={`Add to Cart ${cartItems[product.id]>0 ? `(${cartItems[product.id]})`:""}`} onClick={() => addToCart(product.id)}/>  */}
           <SecondaryButton
-            textButton={`Add to Cart`}
+            textButton={`${click? "Add to Cart":" Added to Cart"}`}
             onClick={() => handleAddProduct(product)}
           />
         </div>
