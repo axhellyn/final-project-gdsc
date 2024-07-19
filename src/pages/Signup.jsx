@@ -4,6 +4,8 @@ import Button from "../components/ui/Button";
 import { auth, db } from "../firebase/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc, collection, addDoc } from "firebase/firestore";
+import { PiEyeClosedBold } from "react-icons/pi";
+import { HiMiniEye } from "react-icons/hi2";
 
 export default function Signup() {
   let navigate = useNavigate();
@@ -12,6 +14,8 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+
+  const [isShowed, setIsShowed] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -24,7 +28,7 @@ export default function Signup() {
       if (user) {
         await setDoc(doc(db, "users", user.uid), {
           firstName,
-          fullName:`${firstName} ${lastName}`,
+          fullName: `${firstName} ${lastName}`,
           email,
           password,
         });
@@ -88,13 +92,28 @@ export default function Signup() {
               value={email}
             />
 
-            <input
-              type="password"
-              className="w-full border-2 bg-transparent border-purple rounded-lg focus:outline-none py-2 px-4"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
+            <div className="flex gap-2 items-center w-full border-2 bg-transparent border-purple rounded-lg py-2 px-4">
+              <input
+                type={isShowed? "password" : "text"}
+                className="w-full border-2 bg-transparent border-none focus:outline-none"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+              <div className="cursor-pointer">
+                {isShowed ? (
+                  <PiEyeClosedBold
+                    className="w-6 h-6 text-darkPurple"
+                    onClick={() => setIsShowed(!isShowed)}
+                  />
+                ) : (
+                  <HiMiniEye
+                    className="w-6 h-6 text-darkPurple"
+                    onClick={() => setIsShowed(!isShowed)}
+                  />
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-2">

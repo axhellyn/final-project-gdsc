@@ -3,12 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
+import { PiEyeClosedBold } from "react-icons/pi";
+import { HiMiniEye } from "react-icons/hi2";
 
 export default function Login() {
   let navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isShowed, setIsShowed] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -53,13 +56,28 @@ export default function Login() {
           </div>
           <div className="flex flex-col gap-2">
             <label className="font-medium">Password</label>
-            <input
-              type="password"
-              className="w-full md:w-80 xl:w-96 border-2 bg-transparent border-purple rounded-lg focus:outline-none py-2 px-4"
-              placeholder="Your password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
+            <div className="flex gap-2 items-center w-full md:w-80 xl:w-96 border-2 bg-transparent border-purple rounded-lg py-2 px-4">
+              <input
+                type={`${isShowed ? "password" : "text"}`}
+                className="w-full md:w-80 xl:w-96 border-2 bg-transparent border-none focus:outline-none "
+                placeholder="Your password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+              <div className="cursor-pointer">
+                {isShowed ? (
+                  <PiEyeClosedBold
+                    className="w-6 h-6 text-darkPurple"
+                    onClick={() => setIsShowed(!isShowed)}
+                  />
+                ) : (
+                  <HiMiniEye
+                    className="w-6 h-6 text-darkPurple"
+                    onClick={() => setIsShowed(!isShowed)}
+                  />
+                )}
+              </div>
+            </div>
           </div>
           <div className="flex gap-2">
             <span className="text-sm">Don't have an account ? </span>
