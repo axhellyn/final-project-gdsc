@@ -42,9 +42,8 @@ export default function Signup() {
       setPassword("");
       setErrorMessage("");
 
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
+      navigate("/");
+      window.scrollTo(0, 0);
     } catch (error) {
       setErrorMessage("*Invalid");
       // setErrorMessage(error.message)
@@ -94,7 +93,7 @@ export default function Signup() {
 
             <div className="flex gap-2 items-center w-full border-2 bg-transparent border-purple rounded-lg py-2 px-4">
               <input
-                type={isShowed? "password" : "text"}
+                type={isShowed ? "password" : "text"}
                 className="w-full border-2 bg-transparent border-none focus:outline-none"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}

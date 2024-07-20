@@ -5,23 +5,27 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
+  function scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <div className="min-h-fit md:h-[50vh] bg-gradient-to-b from-pink to-purple mt-10 to-80%">
       <div className="h-full px-8 py-10 md:p-16 flex flex-wrap md:flex-row gap-8 justify-between items-center">
         <h1 className="text-4xl font-bold text-white cursor-default">Donutopia.</h1>
         <ul>
           <li>
-            <Link className="text-white hover:text-softPink" to="/">
+            <Link className="text-white hover:text-softPink" to="/" onClick={scrollToTop}>
               Home
             </Link>
           </li>
           <li>
-            <Link className="text-white hover:text-softPink" to="/Product">
+            <Link className="text-white hover:text-softPink" to="/Product" onClick={scrollToTop}>
               Products
             </Link>
           </li>
           <li>
-            <Link className="text-white hover:text-softPink" to="/ContactUs">
+            <Link className="text-white hover:text-softPink" to="/ContactUs" onClick={scrollToTop}>
               Contact Us
             </Link>
           </li>

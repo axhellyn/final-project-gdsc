@@ -113,7 +113,7 @@ export default function navbar() {
             </Link>
           )}
           {userName && (
-            <Link to="/Profile" className="flex gap-2">
+            <Link to="/Profile" onClick={scrollToTop} className="flex gap-2">
               <CgProfile className="h-6 w-6 cursor-pointer" />
               <div className="hidden md:block">{userName}</div>
             </Link>

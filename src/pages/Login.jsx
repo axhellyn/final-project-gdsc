@@ -25,6 +25,7 @@ export default function Login() {
       setErrorMessage("");
 
       navigate("/");
+      window.scrollTo(0, 0);
     } catch (error) {
       setErrorMessage("*Invalid email/password");
       //   setErrorMessage(error.message);
