@@ -21,6 +21,7 @@ export default function Product({ product }) {
     } else {
       alert("Please Login first!");
       navigate("/Login");
+      window.scrollTo(0, 0);
     }
   }
 
