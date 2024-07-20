@@ -10,7 +10,7 @@ const AboutUsSection = forwardRef((props, ref) => {
     Aos.init({once: true});
 
   return (
-    <div className='mb-16 md:mb-0 min-h-fit md:h-screen w-full px-8 py-10 md:py-0 md:p-16' ref={ref}>
+    <div className='mb-16 md:mb-0 min-h-fit md:h-screen w-full px-8 py-10 md:py-0 md:p-16 overflow-x-hidden' ref={ref}>
         <div className='w-full h-full flex flex-col gap-10 md:gap-0 md:flex-row items-center justify-center'>
             <div className='w-full md:w-1/2 flex flex-col gap-4 md:pr-10' data-aos="fade-right" data-aos-duration="1000">
                 <div className='flex gap-3'>
