@@ -17,7 +17,7 @@ export default function ProductsSection() {
 
   return (
     <div
-      className="mb-16 md:mb-0 min-h-fit p-8 md:px-16 md:pb-20"
+      className="mb-16 md:mb-0 h-fit p-8 md:px-16 md:pb-20"
       data-aos="fade-up"
       data-aos-duration="1000"
     >

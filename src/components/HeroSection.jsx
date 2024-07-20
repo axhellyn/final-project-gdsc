@@ -9,7 +9,7 @@ const HeroSection= forwardRef((props, ref) =>{
   const {onClick} = props;
 
   return (
-    <div className="mb-16 md:mb-0 h-screen md:h-[90vh] px-8 md:px-16 overflow-x-hidden">
+    <div className="min-h-screen md:h-[90vh] px-8 md:px-16 overflow-x-hidden">
       <div className="flex h-full flex-col md:flex-row gap-10 justify-center md:justify-between items-center">
         <div className="md:w-1/2" data-aos="fade-right" data-aos-duration="1000">
           <img src={DonutHero} alt="donut"/>

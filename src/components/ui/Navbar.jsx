@@ -38,14 +38,26 @@ export default function navbar() {
       } px-8 md:px-16 py-4 sticky top-0 z-20 bg-white bg-opacity-100 md:bg-opacity-10 backdrop-blur-sm`}
     >
       <nav className="w-full flex justify-between items-center">
-        <div>
-          <a href="/" className="text-2xl font-bold cursor-pointer">
-            Donutopia.
-          </a>
+        <div className="flex md:static items-center gap-5 md:gap-0">
+          <div className="flex md:hidden">
+            <button onClick={toggleNavbar}>
+              {isClicked ? (
+                <VscClose className="h-6 w-6" />
+              ) : (
+                <RxHamburgerMenu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+          <div>
+            <a href="/" className="text-xl md:text-2xl font-bold cursor-pointer">
+              Donutopia.
+            </a>
+          </div>
         </div>
+
         <ul
           className={`${
-            isClicked ? "top-16" : "-top-64"
+            isClicked ? "top-14" : "-top-64"
           } absolute flex flex-col md:flex-row md:static gap-4 md:gap-16 left-0 w-full md:w-auto py-4 md:py-0 bg-white md:bg-opacity-0 bg-opacity-100`}
         >
           <li>
@@ -94,21 +106,7 @@ export default function navbar() {
             </NavLink>
           </li>
         </ul>
-        <div
-          className={`${
-            isClicked ? "top-[199px]" : "-top-64"
-          } w-full md:w-auto flex items-center gap-6 md:static absolute left-0 px-8 md:px-0 py-4 md:py-0 bg-white bg-opacity-100 md:bg-opacity-0 backdrop-blur-sm md:backdrop-blur-none shadow-md md:shadow-none`}
-        >
-          <Link onClick={scrollToTop} to="/Cart">
-            <FiShoppingCart className="h-6 w-6 cursor-pointer" />
-            <div
-              className={`${
-                totalQty > 0 ? "block" : "hidden"
-              } w-4 h-4 absolute bottom-3 md:-bottom-1 md:-left-1 z-50 rounded-full bg-darkPurple text-white text-xs text-center`}
-            >
-              <span>{totalQty}</span>
-            </div>
-          </Link>
+        <div className={`flex items-center gap-4 md:gap-6 md:static`}>
           {!userName && (
             <Link to="/Login" onClick={scrollToTop}>
               <CgProfile className="h-6 w-6 cursor-pointer" />
@@ -117,19 +115,21 @@ export default function navbar() {
           {userName && (
             <Link to="/Profile" className="flex gap-2">
               <CgProfile className="h-6 w-6 cursor-pointer" />
-              {userName}
+              <div className="hidden md:block">{userName}</div>
             </Link>
           )}
-        </div>
-
-        <div className="flex md:hidden">
-          <button onClick={toggleNavbar}>
-            {isClicked ? (
-              <VscClose className="h-6 w-6" />
-            ) : (
-              <RxHamburgerMenu className="h-6 w-6" />
-            )}
-          </button>
+          <Link onClick={scrollToTop} to="/Cart">
+            <FiShoppingCart className="h-6 w-6 cursor-pointer" />
+            <div className="relative">
+              <div
+                className={`${
+                  totalQty > 0 ? "block" : "hidden"
+                } w-4 h-4 absolute bottom-3 md:-bottom-1 md:-left-1 z-50 rounded-full bg-darkPurple text-white text-xs text-center`}
+              >
+                <span>{totalQty}</span>
+              </div>
+            </div>
+          </Link>
         </div>
       </nav>
     </header>
