@@ -2,12 +2,12 @@ import { useContext } from "react";
 import SecondaryButton from "../components/ui/SecondaryButton";
 import { auth } from "../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 export default function Profile() {
   const navigate = useNavigate();
-  const { fullName, userEmail } = useContext(AuthContext);
+  const { fullName, userEmail, isAdmin } = useContext(AuthContext);
 
   function handleLogut() {
     signOut(auth).then(() => {
@@ -25,7 +25,14 @@ export default function Profile() {
           <div className="text-sm">{userEmail}</div>
         </div>
 
-        <SecondaryButton textButton={"Log out"} onClick={handleLogut} />
+        <div className="flex flex-col items-center gap-2">
+          <SecondaryButton textButton={"Log out"} onClick={handleLogut} />
+          {isAdmin ? (
+            <div className="text-sm text-darkPurple hover:text-purple">
+              <Link to="/add-product">Add Product</Link>
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );

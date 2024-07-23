@@ -12,6 +12,7 @@ export default function AuthContextProvider({ children }) {
   const [userEmail, setUserEmail] = useState(null);
   const [uid, setUid] = useState(null);
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -22,6 +23,11 @@ export default function AuthContextProvider({ children }) {
         setFullName(querySnapshot.data().fullName);
         setUser(user);
         setUid(user.uid);
+        if(querySnapshot.data().role === "admin"){
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
       } else {
         setUserName(null);
         setUser(null);
@@ -30,7 +36,7 @@ export default function AuthContextProvider({ children }) {
     });
   }, []);
 
-  const value = { user, uid, userName, fullName, userEmail };
+  const value = { user, uid, userName, fullName, userEmail, isAdmin };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
