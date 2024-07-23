@@ -125,7 +125,7 @@ export default function Signup() {
           <div className="flex flex-wrap gap-2">
             <span className="text-sm">Already have an account ? </span>
             <div className="text-sm font-semibold text-darkPurple hover:text-darkPink">
-              <Link to={"/Login"}>Login</Link>
+              <Link to={"/login"}>Login</Link>
             </div>
           </div>
 

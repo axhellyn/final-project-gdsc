@@ -11,7 +11,7 @@ export default function Profile() {
 
   function handleLogut() {
     signOut(auth).then(() => {
-      navigate("/Login");
+      navigate("/login");
       window.scrollTo(0, 0);
     });
   }

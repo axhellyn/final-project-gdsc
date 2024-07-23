@@ -1,12 +1,25 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import SecondaryButton from "./SecondaryButton";
 import { FaTruckFast } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function DetailedProductItem({ product }) {
-  const { rupiahFormat, addToCart } =
-    useContext(ShopContext);
+  const { rupiahFormat, addToCart } = useContext(ShopContext);
+  const { uid } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  function handleAddProduct(product) {
+    if (uid !== null) {
+      addToCart(product);
+    } else {
+      alert("Please Login first!");
+      navigate("/login");
+      window.scrollTo(0, 0);
+    }
+  }
 
   return (
     <div className="min-h-screen px-8 py-10 md:px-16 md:py-4">
@@ -21,7 +34,7 @@ export default function DetailedProductItem({ product }) {
           <p>{product.description}</p>
 
           <div className="flex items-center gap-2 border-y-2 border-gray border-opacity-50 p-2">
-            <FaTruckFast className="w-6 text-darkPurple"/>
+            <FaTruckFast className="w-6 text-darkPurple" />
             <p>Free shipping</p>
           </div>
           <p></p>
@@ -33,7 +46,7 @@ export default function DetailedProductItem({ product }) {
           <div className="flex justify-center mt-4">
             <SecondaryButton
               textButton="Add to Cart"
-              onClick={() => addToCart(product)}
+              onClick={() => handleAddProduct(product)}
             />
           </div>
         </div>
@@ -43,5 +56,5 @@ export default function DetailedProductItem({ product }) {
 }
 
 DetailedProductItem.propTypes = {
-  product: PropTypes.object
-}
+  product: PropTypes.object,
+};

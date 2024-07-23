@@ -92,7 +92,7 @@ export default function Login() {
           <div className="flex gap-2">
             <span className="text-sm">Don't have an account?</span>
             <div className="text-sm font-semibold text-darkPurple hover:text-darkPink">
-              <Link to={"/Signup"}>Sign Up</Link>
+              <Link to={"/signup"}>Sign Up</Link>
             </div>
           </div>
           <div className="text-red-600 text-sm font-semibold">

@@ -78,7 +78,7 @@ export default function Navbar() {
           <li>
             <NavLink
               onClick={scrollToTop}
-              to="/Product"
+              to="/product"
               className={({ isActive, isPending }) =>
                 isPending
                   ? ""
@@ -93,7 +93,7 @@ export default function Navbar() {
           <li>
             <NavLink
               onClick={scrollToTop}
-              to="/ContactUs"
+              to="/contact-us"
               className={({ isActive, isPending }) =>
                 isPending
                   ? ""
@@ -108,17 +108,17 @@ export default function Navbar() {
         </ul>
         <div className={`flex items-center gap-4 md:gap-6 md:static`}>
           {!userName && (
-            <Link to="/Login" onClick={scrollToTop}>
+            <Link to="/login" onClick={scrollToTop}>
               <CgProfile className="h-6 w-6 cursor-pointer" />
             </Link>
           )}
           {userName && (
-            <Link to="/Profile" onClick={scrollToTop} className="flex gap-2">
+            <Link to="/profile" onClick={scrollToTop} className="flex gap-2">
               <CgProfile className="h-6 w-6 cursor-pointer" />
               <div className="hidden md:block">{userName}</div>
             </Link>
           )}
-          <Link onClick={scrollToTop} to="/Cart">
+          <Link onClick={scrollToTop} to="/cart">
             <FiShoppingCart className="h-6 w-6 cursor-pointer" />
             <div className="relative">
               <div

@@ -10,7 +10,7 @@ export default function ProductsSection() {
   const navigate = useNavigate();
 
   function showMoreItems() {
-    navigate("/Product");
+    navigate("/product");
     window.scrollTo(0, 0);
   }
 

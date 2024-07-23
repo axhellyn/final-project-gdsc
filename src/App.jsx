@@ -36,9 +36,9 @@ function App() {
                   <HomePage onClick={scrollToSection} ref={aboutUsSection} />
                 }
               />
-              <Route path="/Product" element={<ProductPage />} />
+              <Route path="/product" element={<ProductPage />} />
               <Route
-                path="/ContactUs"
+                path="/contact-us"
                 element={
                   <ContactUsPage
                     onClick={scrollToSection}
@@ -46,14 +46,14 @@ function App() {
                   />
                 }
               />
-              <Route path="/Cart" element={<Cart />} />
-              <Route path="/SignUp" element={<Signup />} />
-              <Route path="/Login" element={<Login />} />
-              <Route path="/Profile" element={<Profile />} />
-              <Route path="/Donut">
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/signUp" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/donut">
                 <Route path=":productId" element={<DetailedProduct />} />
               </Route>
-              <Route path="/AddProduct" element={<AddProduct />} />
+              <Route path="/add-product" element={<AddProduct />} />
             </Routes>
             <Footer />
           </BrowserRouter>

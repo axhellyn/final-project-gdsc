@@ -13,6 +13,10 @@ export default function Product({ product }) {
     useContext(ShopContext);
   const { uid } = useContext(AuthContext);
 
+  function scrollToTop(){
+    window.scrollTo(0, 0);
+  }
+
   function handleAddProduct(product) {
     if (uid !== null) {
         addToCart(product); 
@@ -21,7 +25,7 @@ export default function Product({ product }) {
         }
     } else {
       alert("Please Login first!");
-      navigate("/Login");
+      navigate("/login");
       window.scrollTo(0, 0);
     }
   }
@@ -30,7 +34,7 @@ export default function Product({ product }) {
     <div className="min-h-fit min-w-fit bg-white bg-opacity-0 shadow-xl rounded-3xl mx-4 my-2">
       <div className="flex flex-col px-8 py-4">
         <div className="w-full flex justify-center h-40">
-          <Link to={`/Donut/${product.id}`}>
+          <Link to={`/donut/${product.id}`} onClick={scrollToTop}>
             <img className="w-40" src={product.imgUrl} alt="donut img" />
           </Link>
         </div>
