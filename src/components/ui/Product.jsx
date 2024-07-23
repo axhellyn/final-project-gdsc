@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import PropTypes from 'prop-types'
+import { useContext, useState } from "react";
 import SecondaryButton from "./SecondaryButton";
 import { ShopContext } from "../../context/ShopContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -48,4 +49,8 @@ export default function Product({ product }) {
       </div>
     </div>
   );
+}
+
+Product.propTypes = {
+  product: PropTypes.object
 }

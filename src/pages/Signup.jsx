@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import { auth, db } from "../firebase/firebaseConfig";
@@ -9,44 +9,51 @@ import { HiMiniEye } from "react-icons/hi2";
 
 export default function Signup() {
   let navigate = useNavigate();
+  const initialValue = "";
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [state, setState] = useState({
+    email: initialValue,
+    password: initialValue,
+    firstName: initialValue,
+    lastName: initialValue,
+    errorMessage: initialValue,
+    isShowed: true
+  })
 
-  const [isShowed, setIsShowed] = useState(true);
-
-  const [errorMessage, setErrorMessage] = useState("");
+  function handleChangeState(key, value){
+    setState(prevState => ({
+      ...prevState,
+      [key]: value
+    }))
+  }
 
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, state.email, state.password);
       const user = auth.currentUser;
       if (user) {
         await setDoc(doc(db, "users", user.uid), {
-          firstName,
-          fullName: `${firstName} ${lastName}`,
-          email,
-          password,
+          firstName: state.firstName,
+          fullName: `${state.firstName} ${state.lastName}`,
+          email: state.email,
+          password: state.password,
         });
       }
 
       alert("Successfully Signed Up!");
 
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-      setErrorMessage("");
+      handleChangeState("firstName", initialValue);
+      handleChangeState("lastName", initialValue);
+      handleChangeState("email", initialValue);
+      handleChangeState("password", initialValue);
+      handleChangeState("errorMessage", initialValue);
 
       navigate("/");
       window.scrollTo(0, 0);
     } catch (error) {
-      setErrorMessage("*Invalid");
-      // setErrorMessage(error.message)
+      handleChangeState("errorMessage", "*Invalid");
     }
   };
 
@@ -70,16 +77,16 @@ export default function Signup() {
                 className="border-purple
                w-1/2 border-2 bg-transparent  rounded-lg focus:outline-none py-2 px-4"
                 placeholder="First Name"
-                onChange={(e) => setFirstName(e.target.value)}
-                value={firstName}
+                onChange={(e) => handleChangeState("firstName", e.target.value)}
+                value={state.firstName}
               />
               <input
                 type="text"
                 className="border-purple
                w-1/2 border-2 bg-transparent  rounded-lg focus:outline-none py-2 px-4"
                 placeholder="Last Name"
-                onChange={(e) => setLastName(e.target.value)}
-                value={lastName}
+                onChange={(e) => handleChangeState("lastName", e.target.value)}
+                value={state.lastName}
               />
             </div>
 
@@ -87,28 +94,28 @@ export default function Signup() {
               type="text"
               className="w-full border-2 bg-transparent border-purple rounded-lg focus:outline-none py-2 px-4"
               placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              onChange={(e) => handleChangeState("email", e.target.value)}
+              value={state.email}
             />
 
             <div className="flex gap-2 items-center w-full border-2 bg-transparent border-purple rounded-lg py-2 px-4">
               <input
-                type={isShowed ? "password" : "text"}
+                type={state.isShowed ? "password" : "text"}
                 className="w-full border-2 bg-transparent border-none focus:outline-none"
                 placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
+                onChange={(e) => handleChangeState("password", e.target.value)}
+                value={state.password}
               />
               <div className="cursor-pointer">
-                {isShowed ? (
+                {state.isShowed ? (
                   <PiEyeClosedBold
                     className="w-6 h-6 text-darkPurple"
-                    onClick={() => setIsShowed(!isShowed)}
+                    onClick={() => handleChangeState("isShowed", !state.isShowed)}
                   />
                 ) : (
                   <HiMiniEye
                     className="w-6 h-6 text-darkPurple"
-                    onClick={() => setIsShowed(!isShowed)}
+                    onClick={() => handleChangeState("isShowed", !state.isShowed)}
                   />
                 )}
               </div>
@@ -123,7 +130,7 @@ export default function Signup() {
           </div>
 
           <div className="text-red-600 text-sm font-semibold ">
-            {errorMessage}
+            {state.errorMessage}
           </div>
 
           <div className="flex justify-center">

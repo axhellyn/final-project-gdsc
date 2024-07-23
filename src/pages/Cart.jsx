@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import CartList from "../components/CartList";
 import { ShopContext } from "../context/ShopContext";
 import { FaRegSadTear } from "react-icons/fa";

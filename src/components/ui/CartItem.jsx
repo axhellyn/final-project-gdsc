@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import PropTypes from 'prop-types';
+import { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import { IoClose } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
@@ -54,4 +55,8 @@ export default function CartItem({ product }) {
       </div>
     </div>
   );
+}
+
+CartItem.propTypes = {
+  product: PropTypes.object
 }

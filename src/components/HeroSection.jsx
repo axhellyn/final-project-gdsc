@@ -1,12 +1,13 @@
-import React, { forwardRef } from "react";
+import PropTypes from 'prop-types'
+import { forwardRef } from "react";
 import DonutHero from "../assets/donutHero.png";
 import Button from "./ui/Button";
 import Aos from "aos";
 import 'aos/dist/aos.css';
 
-const HeroSection= forwardRef((props, ref) =>{
+// eslint-disable-next-line react/display-name
+const HeroSection= forwardRef(({ onClick }, ref) =>{
   Aos.init({once: true});
-  const {onClick} = props;
 
   return (
     <div className="min-h-screen md:h-[90vh] px-8 md:px-16 overflow-x-hidden">
@@ -38,3 +39,7 @@ const HeroSection= forwardRef((props, ref) =>{
 });
 
 export default HeroSection;
+
+HeroSection.propTypes = {
+  onClick: PropTypes.func
+}

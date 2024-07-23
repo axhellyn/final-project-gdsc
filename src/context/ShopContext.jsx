@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import PropTypes from 'prop-types'
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   collection,
   deleteDoc,
@@ -15,7 +16,7 @@ import { AuthContext } from "./AuthContext";
 
 export const ShopContext = createContext(null);
 
-export default function ShopContextProvider({children}) {
+export default function ShopContextProvider({ children }) {
   let Product;
   const { uid } = useContext(AuthContext);
 
@@ -182,4 +183,8 @@ export default function ShopContextProvider({children}) {
       {children}
     </ShopContext.Provider>
   );
+}
+
+ShopContextProvider.propTypes = {
+  children: PropTypes.node.isRequired
 }

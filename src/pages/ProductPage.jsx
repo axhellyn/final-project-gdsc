@@ -1,4 +1,3 @@
-import React from "react";
 import ProductCategory from "../components/ProductCategory";
 import Aos from "aos";
 import 'aos/dist/aos.css';

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import SecondaryButton from "../components/ui/SecondaryButton";
 import { auth } from "../firebase/firebaseConfig";
 import { signOut } from "firebase/auth";

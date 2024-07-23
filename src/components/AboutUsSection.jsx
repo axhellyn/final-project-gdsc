@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import SecondaryButton from './ui/SecondaryButton'
 import { FaInstagram } from "react-icons/fa6";
 import { FiMail } from "react-icons/fi";
@@ -6,6 +6,7 @@ import Donut from '../assets/donutAboutUs.png'
 import Aos from "aos";
 import 'aos/dist/aos.css';
 
+// eslint-disable-next-line react/display-name
 const AboutUsSection = forwardRef((props, ref) => {
     Aos.init({once: true});
 

@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import ContactForm from "./ui/ContactForm";
 import SecondaryButton from "./ui/SecondaryButton";
 import { FaInstagram } from "react-icons/fa6";
@@ -7,6 +7,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import Aos from "aos";
 import 'aos/dist/aos.css';
 
+// eslint-disable-next-line react/display-name
 const ContactUsSection = forwardRef((props, ref) => {
   Aos.init({once: true});
 

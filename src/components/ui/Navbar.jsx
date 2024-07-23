@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { VscClose } from "react-icons/vsc";
-import { Link, Outlet, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ShopContext } from "../../context/ShopContext";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function navbar() {
+export default function Navbar() {
   const [isClicked, setIsClicked] = useState(false);
   const [scrolledNavbar, setScrolledNavbar] = useState(false);
   const { totalQty } = useContext(ShopContext);

@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import PropTypes from 'prop-types'
+import { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import SecondaryButton from "./SecondaryButton";
 import { FaTruckFast } from "react-icons/fa6";
@@ -32,11 +33,15 @@ export default function DetailedProductItem({ product }) {
           <div className="flex justify-center mt-4">
             <SecondaryButton
               textButton="Add to Cart"
-              onClick={() => addToCart(product.id)}
+              onClick={() => addToCart(product)}
             />
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+DetailedProductItem.propTypes = {
+  product: PropTypes.object
 }

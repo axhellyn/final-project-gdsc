@@ -1,4 +1,3 @@
-import React from "react";
 import ProductList from "./ProductList";
 import Button from "./ui/Button";
 import Aos from "aos";

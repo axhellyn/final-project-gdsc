@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
+import PropTypes from 'prop-types';
 import Product from './ui/Product'
 import { ShopContext } from '../context/ShopContext'
 
-export default function ProductCategory({category, style}) {
+export default function ProductCategory({ category, style }) {
   const { products } = useContext(ShopContext);
 
   return (
@@ -16,4 +17,9 @@ export default function ProductCategory({category, style}) {
         </div>
       </section>
   )
+}
+
+ProductCategory.propTypes = {
+  category: PropTypes.string,
+  style: PropTypes.string
 }
